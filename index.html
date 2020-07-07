@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>viewer</title>
+    <style type="text/css">
+        body{font-size: 10px;}
+    </style>
+</head>
+<body>
+<div class="bodywrap" id="bodywrap">
+
+<div>
+<p>Github: <a href="https://github.com/gitforziio/wechat-moments-viewer" target="_blank">@gitforziio/wechat-moments-viewer</a></p>
+</div>
+
+<form name="file-form" class="container">
+    <div class="row" id="filePicker">
+        <!-- <label for="file-input" class="col-md-2 my-2 col-form-label text-md-right">选择文件：</label> -->
+        <div class="col-md-8 my-2">
+            <input type="file" class="form-control" name="file-input" id="file-input" multiple="multiple" data-accept=".sqlite" />
+        </div>
+        <div class="btn-group col-md-4 my-2">
+            <button type="button" name="do_import" id="do_import" class="btn btn-primary" v-on:click="onImport">📥</button>
+        </div>
+    </div>
+</form>
+
+<div>
+    <div v-for="moment in moments" v-if="moment.Type==1">
+        <hr />
+        <p><code>{{dealTime(moment.CreateTime)}}</code></p>
+        <div>
+            <p v-if="moment.Type==1" v-html="dealMsg(moment.Message)"></p>
+            <p v-if="moment.Type!=1">type: <span>{{moment.Type}}</span></p>
+            <pre v-if="moment.Type!=1">{{moment.Message}}</pre>
+        </div>
+        <hr />
+    </div>
+</div>
+
+
+
+</div>
+<script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+<script type="text/javascript" src="main.js"></script>
+</body>
+</html>
